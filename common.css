@@ -1,0 +1,40 @@
+/* JavaScript页面是从上到下加载的，有时候加载出错是因为html的代码顺序出错了！！！ */
+
+/* 一、实现单行、多行文本溢出显示省略号（...）*/
+/* 单行（当文本有转折号的时候不会省略） */
+{
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+/* 多行 */
+{
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 3;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+/* 二丶flex布局 justify-content：space-between; */
+/* 解决最后一排数量不够自动向两端排列问题（伪元素的宽度和子元素相等），这种解决方案只适合每列有3个项目的分布情况 */
+.item-flex {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+/* 加上after伪元素，解决最后一排数量不够两端分布的情况 */
+.item-flex:after {
+	content: "伪类";
+	width: 30%;
+}
+
+.item-list {
+	width: 30%;
+	height: 140px;
+	margin-bottom: 20px;
+}
+
+/* 注意： 1、uniapp使用canvas组件必须加上id属性，canvas-id属性在某些小程序中无效 2、行内元素的伪元素需要设置伪元素display属性才能显示出来 */
